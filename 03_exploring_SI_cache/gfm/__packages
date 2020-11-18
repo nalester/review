@@ -1,0 +1,16 @@
+base
+dplyr
+ggplot2
+nlme
+mgcv
+qgam
+rgl
+mgcViz
+Matrix
+lme4
+lmerTest
+carData
+effects
+MASS
+rmcorr
+pwr
