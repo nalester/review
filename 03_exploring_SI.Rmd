@@ -57,16 +57,15 @@ Now, just check some of the figures in the text.
 cat(paste0("Number of transcripts = ", length(unique(dat$Audiofile)), "\n"))
 
 # number of variable contexts
-cols = 9:ncol(dat)
-cat(paste0("Number of variable contexts = ", 
-           dat %>% dplyr::select(cols) %>%
-           sum(colSums(.)), "\n"))
-
-## Going further, we can check the 
-## sum of the column labeled 
-## "Total.Variable.Contexts" to see 
-## if it matches
 cat(paste0("Number of var. contexts from table = ", sum(dat$Total.Variable.Contexts), "\n"))
+
+## Trying again, this time by computing the measures myself from the other columns
+cols = 9:28
+dat$CustomVarCon = apply(dat[, cols], 1, sum)
+cat(paste0("Number of var. contexts from row sums = ", sum(dat$CustomVarCon), "\n"))
+
+## and just to prove it:
+cor.test(dat$Total.Variable.Contexts, dat$CustomVarCon) # identical
 
 # number of speakers
 cat(paste0("Number of speakers = ", length(unique(dat$Speaker_Number)), "\n"))
@@ -74,7 +73,7 @@ cat(paste0("Number of speakers = ", length(unique(dat$Speaker_Number)), "\n"))
 
 For some reason, I am not able to replicate the numbers reported in the text. Perhaps the data had been pruned in a way I didn't catch? I can only assume that each speaker is from the same category (i.e., no males, as reported in the text), so that the "Dyad" column does not combine with the "Speaker_Side" variable to indicate sex (i.e., it is not the case that if Speaker_Side = B and Dyad = Male, then the speaker is male).
 
-Interestingly, I find fewer unique files than reported (183 here vs. 190 reported), but substantially more variable contexts (13,506 here vs. 9,065 reported). If I only rely on the column labeled "Total.Variable.Contexts", I still arrive at a different value than the reported one (6,753 vs. 9,065).
+I find fewer unique files than reported (183 here vs. 190 reported) as well as a much lower number of variable contexts (6,753 vs. 9,065). But this appears to be the true value for the table as reflected by the row sums. 
 
 Finally, I get fewer unique speakers than reported (30 vs. 34).
 

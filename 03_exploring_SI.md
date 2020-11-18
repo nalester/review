@@ -52,23 +52,36 @@ cat(paste0("Number of transcripts = ", length(unique(dat$Audiofile)), "\n"))
 
 ``` r
 # number of variable contexts
-cols = 9:ncol(dat)
-cat(paste0("Number of variable contexts = ", 
-           dat %>% dplyr::select(cols) %>%
-           sum(colSums(.)), "\n"))
-```
-
-    ## Number of variable contexts = 23252.8319228645
-
-``` r
-## Going further, we can check the 
-## sum of the column labeled 
-## "Total.Variable.Contexts" to see 
-## if it matches
 cat(paste0("Number of var. contexts from table = ", sum(dat$Total.Variable.Contexts), "\n"))
 ```
 
     ## Number of var. contexts from table = 6753
+
+``` r
+## Trying again, this time by computing the measures myself from the other columns
+cols = 9:28
+dat$CustomVarCon = apply(dat[, cols], 1, sum)
+cat(paste0("Number of var. contexts from row sums = ", sum(dat$CustomVarCon), "\n"))
+```
+
+    ## Number of var. contexts from row sums = 6753
+
+``` r
+## and just to prove it:
+cor.test(dat$Total.Variable.Contexts, dat$CustomVarCon) # identical
+```
+
+    ## 
+    ##  Pearson's product-moment correlation
+    ## 
+    ## data:  dat$Total.Variable.Contexts and dat$CustomVarCon
+    ## t = Inf, df = 195, p-value < 2.2e-16
+    ## alternative hypothesis: true correlation is not equal to 0
+    ## 95 percent confidence interval:
+    ##  1 1
+    ## sample estimates:
+    ## cor 
+    ##   1
 
 ``` r
 # number of speakers
@@ -85,11 +98,10 @@ with the “Speaker\_Side” variable to indicate sex (i.e., it is not the
 case that if Speaker\_Side = B and Dyad = Male, then the speaker is
 male).
 
-Interestingly, I find fewer unique files than reported (183 here vs. 190
-reported), but substantially more variable contexts (13,506 here
-vs. 9,065 reported). If I only rely on the column labeled
-“Total.Variable.Contexts”, I still arrive at a different value than
-the reported one (6,753 vs. 9,065).
+I find fewer unique files than reported (183 here vs. 190 reported) as
+well as a much lower number of variable contexts (6,753 vs. 9,065). But
+this appears to be the true value for the table as reflected by the row
+sums.
 
 Finally, I get fewer unique speakers than reported (30 vs. 34).
 
