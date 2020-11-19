@@ -328,7 +328,10 @@ silXvc = ggplot(dat, aes(y = Norm.Seconds.Silence, x = Norm.Variable.Contexts, c
 silXvc
 ```
 
-![](03_exploring_SI_files/figure-gfm/dis_by_sil-3.png)<!-- -->
+![](03_exploring_SI_files/figure-gfm/dis_by_sil-3.png)<!-- --> Of note
+is the fact that the lines (a) have large error bars (indicative of the
+small sample sizes) and (b) do not follow any single pattern (i.e., some
+are positive, some null, some negative).
 
 An attempt at replicating the results of the rmcorr analysis
 
