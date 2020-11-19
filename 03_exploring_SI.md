@@ -141,9 +141,10 @@ conv.size.ecdf = ggplot(dat, aes(Total.Words)) +
 conv.size.ecdf
 ```
 
-![](03_exploring_SI_files/figure-gfm/desc_stats-2.png)<!-- --> The bulk
-of the conversations contain fewer than 1500 words, and 3/4 of them
-contain fewer than 1000. Thus, these samples are relatively small.
+![](03_exploring_SI_files/figure-gfm/desc_stats-2.png)<!-- -->
+
+The bulk of the conversations contain fewer than 1500 words, and 3/4 of
+them contain fewer than 1000. Thus, these samples are relatively small.
 
 How many data points does each speaker produce?
 
@@ -328,10 +329,11 @@ silXvc = ggplot(dat, aes(y = Norm.Seconds.Silence, x = Norm.Variable.Contexts, c
 silXvc
 ```
 
-![](03_exploring_SI_files/figure-gfm/dis_by_sil-3.png)<!-- --> Of note
-is the fact that the lines (a) have large error bars (indicative of the
-small sample sizes) and (b) do not follow any single pattern (i.e., some
-are positive, some null, some negative).
+![](03_exploring_SI_files/figure-gfm/dis_by_sil-3.png)<!-- -->
+
+Of note is the fact that the lines (a) have large error bars (indicative
+of the small sample sizes) and (b) do not follow any single pattern
+(i.e., some are positive, some null, some negative).
 
 An attempt at replicating the results of the rmcorr analysis
 

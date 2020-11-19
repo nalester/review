@@ -106,6 +106,7 @@ conv.size.ecdf = ggplot(dat, aes(Total.Words)) +
 
 conv.size.ecdf
 ```
+
 The bulk of the conversations contain fewer than 1500 words, and 3/4 of them contain fewer than 1000. Thus, these samples are relatively small.
 
 How many data points does each speaker produce?
@@ -131,6 +132,7 @@ freq.spkrs = speaker.freqs %>%
 freq.spkrs = pull(freq.spkrs, speaker)
 
 ```
+
 Five speakers only contribute a single data point to the analysis. This makes it difficult to assess how they would behave across multiple contexts. But another point of concern is the relatively small number of observations per participant. Recent work on the "replicability crisis" has revealed that such low numbers -- without expectations of huge effect sizes (and/or proper power analyses) -- results in estimates (e.g., of correlation) that are (a) overestimated in terms of absolute magnitude, (b) susceptible to flips in direction of effects depending on the sample, and (c) at greater risk of both Type I and Type II error (see the work of Vasishth and colleagues). The authors should carefully consider this in their discussion and motivation of the methods they employ. 
 
 As is typical with corpus data, we are dealing with unbalanced samples. Being the most conservative, I plot our expectations for simple correlations given the largest sample size in your dataset across three expected effect sizes with alpha = 0.5.
@@ -219,6 +221,7 @@ silXvc = ggplot(dat, aes(y = Norm.Seconds.Silence, x = Norm.Variable.Contexts, c
 
 silXvc
 ```
+
 Of note is the fact that the lines (a) have large error bars (indicative of the small sample sizes) and (b) do not follow any single pattern (i.e., some are positive, some null, some negative).
 
 An attempt at replicating the results of the rmcorr analysis
@@ -308,6 +311,7 @@ abline(h=0)
 # And check the summary
 summary(gam.pois.norm)
 ```
+
 Here we see an effect very similar to the one reported in the paper. Thus, it appears that the manner in which the sample sizes are controlled for influences the relationship between the variables of interest. The negative trend always emerges, but some of the effects at the extremes are rendered invisible by this approach. When the frequencies are modeled as interacting with the sample size, some (non-linear) trends emerge, but only for the smallest and largest sample sizes. 
 
 Now for seconds of silence.
